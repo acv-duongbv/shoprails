@@ -10,6 +10,7 @@ class Product < ApplicationRecord
   before_destroy :check_if_has_line_item
 
   private
+
     def check_if_has_line_item
         if line_items.empty?
             return true
@@ -18,5 +19,4 @@ class Product < ApplicationRecord
             return false
         end
     end
-  end
 end
