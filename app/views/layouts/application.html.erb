@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Shoprails</title>
+<head>
+<title>Books Store</title>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-  </head>
-
-  <body>
-    <%= yield %>
-  </body>
+</head>
+<body id="store">
+    <div id="banner">
+        <%= image_tag("logo.png") %>
+        <%= @page_title || "Books Store" %>
+    </div>
+    <div id="columns">
+        <div id="side">
+            <a href="#">Home</a><br />
+            <a href="#">FAQ</a><br />
+            <a href="#">News</a><br />
+            <a href="#">Contact</a><br />
+        </div>
+        <div id="main">
+            <%= yield %>
+        </div>
+    </div> 
+</body>
 </html>
