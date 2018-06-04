@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'store/index'
+  root :to => 'store#index'
   resources :products
   get 'admin/index'
   get 'sessions/new'
