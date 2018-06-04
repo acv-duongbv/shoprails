@@ -2,6 +2,8 @@
 <html>
 <head>
 <title>Books Store</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
@@ -13,6 +15,11 @@
     </div>
     <div id="columns">
         <div id="side">
+            <div id="cart">
+                <%= hide_cart_if(current_cart.line_items.empty?, :id => "cart") do %>
+                <%= render current_cart %> 
+                <% end %>
+            </div>
             <a href="#">Home</a><br />
             <a href="#">FAQ</a><br />
             <a href="#">News</a><br />
