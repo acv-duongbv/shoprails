@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
+  before_action :get_current_cart, only: [:new, :create]
 
   # GET /orders
   # GET /orders.json
@@ -14,7 +15,6 @@ class OrdersController < ApplicationController
 
   # GET /orders/new
   def new
-    @cart = current_cart
     if @cart.line_items.empty?
       redirect_to "/", :notice => "Your cart is empty"
       return
@@ -30,6 +30,9 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
+    @order.cart_id = @cart.id
+    puts "???????????????????????????????"
+    puts @order.cart_id
     # @order.add_line_items_from_cart(current_cart)
     respond_to do |format|
       if @order.save
@@ -69,6 +72,10 @@ class OrdersController < ApplicationController
   end
 
   private
+
+  def get_current_cart
+    @cart = current_cart
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_order

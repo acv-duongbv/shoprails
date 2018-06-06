@@ -7,7 +7,6 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :phone_number
       t.string :pay_type
       t.timestamps
-      t.references :cart, index: true
     end
   end
 end

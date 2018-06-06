@@ -3,6 +3,7 @@ class CreateLineItems < ActiveRecord::Migration[5.2]
     create_table :line_items do |t|
       t.references :product, index: true
       t.references :cart, index: true
+      t.references :order, index: true
       t.integer :quantity, default: 1
       t.timestamps
     end
