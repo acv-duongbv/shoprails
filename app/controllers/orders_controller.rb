@@ -30,20 +30,17 @@ class OrdersController < ApplicationController
   # POST /orders.json
   def create
     @order = Order.new(order_params)
-    @order.cart_id = @cart.id
-    puts "???????????????????????????????"
-    puts @order.cart_id
-    # @order.add_line_items_from_cart(current_cart)
-    respond_to do |format|
-      if @order.save
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
-        format.html { redirect_to @order, notice: "Order was successfully created." }
-        format.json { render :show, status: :created, location: @order }
+    @order.add_line_items_from_cart(current_cart)
+    if @order.save!
+      Cart.destroy(session[:cart_id])
+      session[:cart_id] = nil
+      if @order.pay_type == "Paypal"
+        redirect_to @order.paypal_url(order_path(@order))
       else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        redirect_to root_path
       end
+    else
+      render :new
     end
   end
 

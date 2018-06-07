@@ -1,13 +1,16 @@
 Rails.application.routes.draw do
+  post "/order/:id" => "orders#show"
+  post "/hook" => "orders#hook"
   resources :orders
   resources :line_items
   resources :carts
-  get 'store/index'
-  root :to => 'store#index'
+  get "store/index"
+  root :to => "store#index"
   resources :products
-  get 'admin/index'
-  get 'sessions/new'
-  get 'sessions/create'
-  get 'sessions/destroy'
+  get "admin/index"
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
