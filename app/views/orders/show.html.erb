@@ -20,10 +20,7 @@
   <%= @order.phone_number %>
 </p>
 
-<p>
-  <strong>Pay type:</strong>
-  <%= @order.pay_type %>
-</p>
+
 <table>
 <% @order.line_items.each do |item| %>
       <tr>
@@ -33,6 +30,9 @@
     <% end %>
 </table>
 <p>========Total: <%= @order.total_price %> $========</p>
+<% if @order.status == 'Waiting'%>
+ <%= link_to "Pay now", @order.paypal_url(order_path(@order)) %>
+<%end%>
 <p>Status: <%= @order.status %></p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |

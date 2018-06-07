@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 2018_06_05_022800) do
     t.text "address"
     t.string "email"
     t.string "phone_number"
-    t.string "pay_type"
     t.text "notification_params"
     t.string "status", default: "Waiting"
     t.string "transaction_id"

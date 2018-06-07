@@ -42,14 +42,11 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(current_cart)
+    puts order_params
     if @order.save!
       Cart.destroy(session[:cart_id])
       session[:cart_id] = nil
-      if @order.pay_type == "Paypal"
-        redirect_to @order.paypal_url(order_path(@order))
-      else
-        redirect_to root_path
-      end
+      redirect_to "/orders/#{@order.id}", :notice => "Create infomation success!"
     else
       render :new
     end
@@ -92,6 +89,6 @@ class OrdersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def order_params
-    params.require(:order).permit(:name, :address, :email, :phone_number, :pay_type)
+    params.require(:order).permit(:name, :address, :email, :phone_number)
   end
 end

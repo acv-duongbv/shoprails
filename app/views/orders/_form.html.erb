@@ -29,10 +29,7 @@
         <%= f.label :phone_number %><br>
         <%= f.text_field :phone_number, :size => 40 %>
     </div>
-    <div class="field">
-        <%= f.label :pay_type %><br>
-        <%= f.select :pay_type, Order::PAYMENT_TYPES, :prompt => 'Select a payment method' %>
-    </div>
+
   
     <div class="actions">
         <%= f.submit 'Place order' %>
