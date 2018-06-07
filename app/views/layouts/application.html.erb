@@ -15,11 +15,7 @@
     </div>
     <div id="columns">
         <div id="side">
-            <div id="cart">
-                <%= hide_cart_if(current_cart.line_items.empty?, :id => "cart") do %>
-                <%= render current_cart %> 
-                <% end %>
-            </div>
+            
             <a href="#">Home</a><br />
             <a href="#">FAQ</a><br />
             <a href="#">News</a><br />

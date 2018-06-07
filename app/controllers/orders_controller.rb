@@ -42,7 +42,6 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.add_line_items_from_cart(current_cart)
-    puts order_params
     if @order.save!
       Cart.destroy(session[:cart_id])
       session[:cart_id] = nil

@@ -16,7 +16,7 @@ class Order < ApplicationRecord
 
   def paypal_url(return_path)
     values = {
-      business: "bvduong76-facilitator-shop@gmail.com",
+      business: "bvduong76-facilitator-shop-1@gmail.com",
       cmd: "_xclick",
       upload: 1,
       invoice: id,
