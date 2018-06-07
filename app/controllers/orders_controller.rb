@@ -1,6 +1,20 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :get_current_cart, only: [:new, :create]
+  before_action :hook, only: :show
+  protect_from_forgery except: [:hook]
+
+  def hook
+    puts "==================================================================="
+
+    params.permit!
+    status = params[:payment_status]
+    if status == "Completed"
+      @order = Order.find params[:invoice]
+      @order.update_attributes notification_params: params, status: status, transaction_id: params[:txn_id], purchased_at: Time.now
+    end
+    render nothing: true
+  end
 
   # GET /orders
   # GET /orders.json

@@ -29,6 +29,7 @@ class Order < ApplicationRecord
       item_name: self.name,
       item_number: self.id,
       quantity: "1",
+      notify_url: "#{Rails.application.secrets.app_host}/order/hook",
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
