@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   post "/order/:id" => "orders#show"
-  post "/order/hook" => "orders#hook"
+  post "/hook" => "orders#hook"
   resources :orders
   resources :line_items
   resources :carts

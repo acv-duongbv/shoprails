@@ -7,7 +7,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
       t.string :phone_number
       t.string :pay_type
       t.text :notification_params
-      t.string :status
+      t.string :status, default: "Waiting"
       t.string :transaction_id
       t.datetime :purchased_at
       t.timestamps

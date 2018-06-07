@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2018_06_05_022800) do
     t.string "phone_number"
     t.string "pay_type"
     t.text "notification_params"
-    t.string "status"
+    t.string "status", default: "Waiting"
     t.string "transaction_id"
     t.datetime "purchased_at"
     t.datetime "created_at", null: false
@@ -54,4 +54,5 @@ ActiveRecord::Schema.define(version: 2018_06_05_022800) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
 end

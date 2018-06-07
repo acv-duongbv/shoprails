@@ -17,19 +17,17 @@ class Order < ApplicationRecord
   end
 
   def paypal_url(return_path)
-    puts "??????????????????????????"
-    puts return_path
     values = {
-      business: "bvduong76-facilitator@gmail.com",
+      business: "bvduong76-facilitator-shop@gmail.com",
       cmd: "_xclick",
       upload: 1,
-      return: "#{Rails.application.secrets.app_host}#{return_path}",
       invoice: id,
       amount: self.total_price,
       item_name: self.name,
       item_number: self.id,
       quantity: "1",
-      notify_url: "#{Rails.application.secrets.app_host}/order/hook",
+      notify_url: "#{Rails.application.secrets.app_host}/hook",
+      return: "#{Rails.application.secrets.app_host}#{return_path}",
     }
     "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end
